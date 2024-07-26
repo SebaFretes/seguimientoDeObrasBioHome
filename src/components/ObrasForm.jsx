@@ -2,7 +2,11 @@ import { useForm } from "react-hook-form"
 
 export const ObrasForm = () => {
 
-  const { register } = useForm()
+  const { register, handleSubmit, formState:{errors} } = useForm();
+
+  const registerObra = () => {
+    console.log('nueva obra');
+  }
   
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
@@ -16,6 +20,7 @@ export const ObrasForm = () => {
         <form 
             className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
             noValidate
+            onSubmit={handleSubmit(registerObra)}
         >
               <div className="mb-5">
                   <label htmlFor="name" className="text-sm uppercase font-bold">
@@ -25,8 +30,12 @@ export const ObrasForm = () => {
                       id="name"
                       className="w-full p-3  border border-gray-100"  
                       type="text" 
-                      placeholder="Nombre de la Obra" 
+                      placeholder="Nombre de la Obra"
+                      {...register('name', {
+                        required: 'Este campo debe ser completado' 
+                      })}
                   />
+                  {errors.name?.message}
               </div>
 
               <div className="mb-5">

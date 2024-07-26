@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"
+import { Error } from "./Error";
 
 export const ObrasForm = () => {
 
@@ -35,7 +36,8 @@ export const ObrasForm = () => {
                         required: 'Este campo debe ser completado' 
                       })}
                   />
-                  {errors.name?.message}
+                  {errors.name && <Error> {errors.name?.message} </Error>}
+                  
               </div>
 
               <div className="mb-5">

@@ -1,5 +1,8 @@
 import { create } from "zustand";
 
 export const store = create(() => ({
-    obras: []
+    obras: [],
+    addNewObra: (data) => {
+        console.log(data);
+    },
 }));

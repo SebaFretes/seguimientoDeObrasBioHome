@@ -5,8 +5,8 @@ export const ObrasForm = () => {
 
   const { register, handleSubmit, formState:{errors} } = useForm();
 
-  const registerObra = () => {
-    console.log('nueva obra');
+  const registerObra = (data) => {
+    console.log(data);
   }
   
   return (

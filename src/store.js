@@ -1,8 +1,16 @@
-import { create } from "zustand";
+import { create } from 'zustand';
+import { v4 } from 'uuid';
 
-export const store = create(() => ({
+const addingId = (obra) => {
+    return {...obra, id: v4() }
+}
+
+export const useObraStore = create((set) => ({
     obras: [],
     addNewObra: (data) => {
-        console.log(data);
+        const newObra = addingId(data);
+        set(state => ({
+            obras: [...state.obras, newObra]
+        }))
     },
 }));

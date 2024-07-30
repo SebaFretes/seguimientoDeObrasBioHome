@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form"
 import { Error } from "./Error";
-import { store } from "../store";
+import { useObraStore } from "../store";
 
 export const ObrasForm = () => {
 
-    const { addNewObra } = store()
+    const addNewObra = useObraStore(state => state.addNewObra)
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 

@@ -41,15 +41,19 @@ export const ObrasForm = () => {
               </div>
 
               <div className="mb-5">
-                <label htmlFor="caretaker" className="text-sm uppercase font-bold">
+                <label htmlFor="client" className="text-sm uppercase font-bold">
                     Cliente 
                 </label>
                 <input  
-                    id="caretaker"
+                    id="client"
                     className="w-full p-3  border border-gray-100"  
                     type="text" 
-                    placeholder="Nombre del Cliente" 
+                    placeholder="Nombre del Cliente"
+                    {...register('client', {
+                        required: 'Este campo debe ser completado' 
+                    })} 
                 />
+                {errors.client && <Error> {errors.client?.message} </Error>}
               </div>
 
             <div className="mb-5">
@@ -60,8 +64,16 @@ export const ObrasForm = () => {
                   id="email"
                   className="w-full p-3  border border-gray-100"  
                   type="email" 
-                  placeholder="Email de Registro" 
+                  placeholder="Email de Registro"
+                  {...register("email", {
+                    required: "El Email es Obligatorio",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Email No Válido'
+                    }
+                  })} 
               />
+              {errors.email && <Error> {errors.email?.message} </Error>}
             </div>
 
             <div className="mb-5">
@@ -71,19 +83,27 @@ export const ObrasForm = () => {
                 <input  
                     id="date"
                     className="w-full p-3  border border-gray-100"  
-                    type="date" 
+                    type="date"
+                    {...register('date', {
+                        required: 'Indicar fecha de inicio de la obra' 
+                    })} 
                 />
+                {errors.date && <Error> {errors.date?.message} </Error>}
             </div>
             
             <div className="mb-5">
-                <label htmlFor="symptoms" className="text-sm uppercase font-bold">
+                <label htmlFor="description" className="text-sm uppercase font-bold">
                 Descripción 
                 </label>
                 <textarea  
-                    id="symptoms"
+                    id="description"
                     className="w-full p-3  border border-gray-100"  
-                    placeholder="Descripción de la Obra" 
+                    placeholder="Descripción de la Obra"
+                    {...register('description', {
+                        required: 'Este campo debe ser completado' 
+                    })} 
                 ></textarea>
+                {errors.description && <Error> {errors.description?.message} </Error>}
             </div>
 
             <input

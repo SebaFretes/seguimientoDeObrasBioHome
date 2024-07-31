@@ -5,6 +5,7 @@ export const ObrasList = () => {
   const obras = useObraStore(state => state.obras);
 
   const deleteObra = useObraStore(state => state.deleteObra);
+  const editObra = useObraStore(state => state.editObra);
 
   return (
     <div className="md:w-1/2 lg:3/5 md:h-screen">
@@ -20,20 +21,22 @@ export const ObrasList = () => {
               <p className="font-bold mb-3 uppercase text-gray-700">Email: <span className="font-normal normal-case">{item.email}</span></p>
               <p className="font-bold mb-3 uppercase text-gray-700">Fecha de inicio: <span className="font-normal normal-case">{item.date}</span></p>
               <p className="font-bold mb-3 uppercase text-gray-700">Descripción: <span className="font-normal normal-case">{item.description}</span></p>
-              <div className="flex justify-between mt-10">
-            <button type="button" className="py-2 px-10 bg-indigo-500 hover:bg-indigo-600 text-white font-bold uppercase rounded-lg">
-              Editar
-            </button>
-            <button type="button"
-            className="py-2 px-10 bg-red-500 hover:bg-red-600 text-white font-bold uppercase rounded-lg"
-            onClick={() => deleteObra(item.id)}>
-              Eliminar
-            </button>
-          </div>
+              <div className="flex flex-col lg:flex-row gap-3 justify-between mt-10">
+                <button type="button"
+                  className="py-2 px-10 bg-indigo-500 hover:bg-indigo-600 text-white font-bold uppercase rounded-lg"
+                  onClick={() => editObra(item.id)}>
+                  Editar
+                </button>
+                <button type="button"
+                  className="py-2 px-10 bg-red-500 hover:bg-red-600 text-white font-bold uppercase rounded-lg"
+                  onClick={() => deleteObra(item.id)}>
+                  Eliminar
+                </button>
+              </div>
             </div>
           )
           )}
-          
+
         </>
       ) : (
         <h2 className="text-3xl font-black text-center">No hay obras</h2>

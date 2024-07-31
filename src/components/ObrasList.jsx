@@ -3,7 +3,6 @@ import { useObraStore } from "../store"
 export const ObrasList = () => {
 
   const obras = useObraStore(state => state.obras);
-
   const deleteObra = useObraStore(state => state.deleteObra);
   const editObra = useObraStore(state => state.editObra);
 

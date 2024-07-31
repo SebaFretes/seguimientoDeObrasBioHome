@@ -22,8 +22,15 @@ export const useObraStore = create(
             }))
         },
         editObra: (id) => {
-            set(state => ({
+            set(() => ({
                 activeId: id
             }))
+        },
+        updateObra: (data) => {
+            set(state => ({
+                obras: state.obras.map(obr => obr.id === state.activeId ? { id: state.activeId, ...data } : obr),
+                activeId: ''
+            })
+            )
         }
     })));

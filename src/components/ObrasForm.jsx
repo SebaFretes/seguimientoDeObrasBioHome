@@ -1,15 +1,34 @@
 import { useForm } from "react-hook-form"
 import { Error } from "./Error";
 import { useObraStore } from "../store";
+import { useEffect } from "react";
 
 export const ObrasForm = () => {
 
-    const addNewObra = useObraStore(state => state.addNewObra)
+    const addNewObra = useObraStore(state => state.addNewObra);
+    const obras = useObraStore(state => state.obras);
+    const activeId = useObraStore(state => state.activeId);
+    const updateObra = useObraStore(state => state.updateObra);
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    useEffect(() => {
+        if(activeId) {
+          const activeObra = obras.filter(obra => obra.id === activeId)[0];
+          setValue('name', activeObra.name);
+          setValue('client', activeObra.client);
+          setValue('email', activeObra.email);
+          setValue('date', activeObra.date);
+          setValue('description', activeObra.description);
+        }
+      }, [activeId])
+
+    const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
 
     const registerObra = (data) => {
-        addNewObra(data);
+        if(activeId) {
+            updateObra(data)
+        } else {
+            addNewObra(data);
+        }
         reset();
     }
 
@@ -113,7 +132,7 @@ export const ObrasForm = () => {
                 <input
                     type="submit"
                     className="bg-indigo-500 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
-                    value='Registrar'
+                    value={activeId ? 'Actualizar' : 'Registrar'}
                 />
             </form>
         </div>

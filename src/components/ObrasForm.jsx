@@ -6,10 +6,11 @@ export const ObrasForm = () => {
 
     const addNewObra = useObraStore(state => state.addNewObra)
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const registerObra = (data) => {
         addNewObra(data);
+        reset();
     }
 
     return (

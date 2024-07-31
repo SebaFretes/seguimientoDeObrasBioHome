@@ -13,4 +13,9 @@ export const useObraStore = create((set) => ({
             obras: [...state.obras, newObra]
         }))
     },
+    deleteObra: (id) => {
+        set(state => ({
+            obras: state.obras.filter(obra => obra.id !== id)
+        }))
+    }
 }));

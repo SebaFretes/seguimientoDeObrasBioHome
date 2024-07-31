@@ -4,7 +4,7 @@ export const ObrasList = () => {
 
   const obras = useObraStore(state => state.obras);
 
-  // console.log(obras);
+  const deleteObra = useObraStore(state => state.deleteObra);
 
   return (
     <div className="md:w-1/2 lg:3/5 md:h-screen">
@@ -24,7 +24,9 @@ export const ObrasList = () => {
             <button type="button" className="py-2 px-10 bg-indigo-500 hover:bg-indigo-600 text-white font-bold uppercase rounded-lg">
               Editar
             </button>
-            <button type="button" className="py-2 px-10 bg-red-500 hover:bg-red-600 text-white font-bold uppercase rounded-lg">
+            <button type="button"
+            className="py-2 px-10 bg-red-500 hover:bg-red-600 text-white font-bold uppercase rounded-lg"
+            onClick={() => deleteObra(item.id)}>
               Eliminar
             </button>
           </div>

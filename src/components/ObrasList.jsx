@@ -1,4 +1,5 @@
-import { useObraStore } from "../store"
+import { useObraStore } from "../store";
+import { toast } from "react-toastify";
 
 export const ObrasList = () => {
 
@@ -7,8 +8,7 @@ export const ObrasList = () => {
   const editObra = useObraStore(state => state.editObra);
 
   return (
-    <div className="md:w-1/2 lg:3/5 md:h-screen">
-      {/* overflow-y-scroll */}
+    <div className="md:w-1/2 lg:3/5 md:h-screen overflow-y-scroll">
       {obras.length ? (
         <>
           <h2 className="text-3xl font-black text-center">Listado de Obras</h2>
@@ -28,7 +28,14 @@ export const ObrasList = () => {
                 </button>
                 <button type="button"
                   className="py-2 px-10 bg-red-500 hover:bg-red-600 text-white font-bold uppercase rounded-lg"
-                  onClick={() => deleteObra(item.id)}>
+                  // onClick={() => deleteObra(item.id)}>
+                  onClick={() => {
+                    deleteObra(item.id);
+                    toast.error('Registro de obra eliminada', {
+                      position: "top-center",
+                      autoClose: 1000
+                    });
+                  }}>
                   Eliminar
                 </button>
               </div>
@@ -38,7 +45,9 @@ export const ObrasList = () => {
 
         </>
       ) : (
-        <h2 className="text-3xl font-black text-center">No hay obras</h2>
+          <div className="h-screen flex items-center justify-center">
+            <h2 className="text-3xl font-black text-center">No hay obras registradas aún</h2>
+          </div>
       )}
     </div>
   )

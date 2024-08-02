@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { Error } from "./Error";
 import { useObraStore } from "../store";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export const ObrasForm = () => {
 
@@ -25,9 +26,15 @@ export const ObrasForm = () => {
 
     const registerObra = (data) => {
         if(activeId) {
-            updateObra(data)
+            updateObra(data);
+            toast.success('Obra actualizada correctamente', {
+                position: "top-center",
+                autoClose: 1000,});
         } else {
             addNewObra(data);
+            toast.info('Obra registrada correctamente', {
+                position: "top-center",
+                autoClose: 1000,});
         }
         reset();
     }
@@ -87,7 +94,7 @@ export const ObrasForm = () => {
                         id="email"
                         className="w-full p-3  border border-gray-100"
                         type="email"
-                        placeholder="Email de Registro"
+                        placeholder="Email del Cliente"
                         {...register("email", {
                             required: "El Email es Obligatorio",
                             pattern: {

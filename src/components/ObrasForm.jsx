@@ -44,8 +44,8 @@ export const ObrasForm = () => {
             <h2 className="font-black text-3xl text-center">Seguimiento Obras</h2>
 
             <p className="text-lg mt-5 text-center mb-10">
-                Añadí Obras y {''}
-                <span className="text-indigo-500 font-bold">Administrálos</span>
+                Completá y Registrá tus {''}
+                <span className="text-indigo-500 font-bold">Obras</span>
             </p>
 
             <form
